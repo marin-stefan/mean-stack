@@ -2,18 +2,19 @@ const path = require('path');
 const express  = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
 
-// mongodb+srv://stefann06:ZEQt1Pd6paJBo3Qe@meancourse.kbdtamm.mongodb.net/ 
 const app = express();
 
-mongoose.connect('mongodb+srv://stefann06:ZEQt1Pd6paJBo3Qe@meancourse.kbdtamm.mongodb.net/node-angular?retryWrites=true&w=majority&appName=MeanCourse')
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority&appName=MeanCourse`)
     .then(() => {
         console.log('Connected to Mongo DB!');
     })
     .catch(() => {
+        console.log(dbInfo)
         console.log('Database connection failed!');
     })
 
