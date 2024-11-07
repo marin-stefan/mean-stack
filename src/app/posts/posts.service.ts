@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { Post } from "./post.model";
 import { Router } from "@angular/router";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<{ posts: Post[], postCount: number }>();
