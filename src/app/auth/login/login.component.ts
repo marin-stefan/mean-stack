@@ -13,7 +13,7 @@ export class LoginComponent {
 
     onLogin(form: NgForm) {
         if (form.invalid) {
-            return
+            return;
         }
 
         this.isLoading = true;

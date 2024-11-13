@@ -10,7 +10,7 @@ const MIME_TYPE_MAP = {
     'image/png': 'png',
     'image/jpeg': 'jpg',
     'image/jpg': 'jpg'
-}
+};
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -20,6 +20,7 @@ const storage = multer.diskStorage({
         if (isValid) {
             error = null;
         };
+
         cb(error, "backend/images");
     },
     filename: (req, file, cb) => {
@@ -54,6 +55,7 @@ router.put('/:id', checkAuth, multer({ storage: storage }).single("image"), (req
         const url = req.protocol + '://' + req.get('host');
         imagePath = url + '/images/' + req.file.filename;
     }
+
     const post = new Post({
         _id: req.body.id,
         title: req.body.title,
@@ -76,6 +78,7 @@ router.get('', (req, res, next) => {
             .skip(pageSize * (currentPage - 1))
             .limit(pageSize);
     }
+
     postQuery.then((documents) => {
         fetchedPosts = documents;
         return Post.count();
@@ -101,7 +104,6 @@ router.get('/:id', (req, res, next) => {
 router.delete('/:id', checkAuth, (req, res, next) => {
     Post.deleteOne({ _id: req.params.id })
         .then(result => {
-            console.log(result)
             res.status(200).json({ message: 'Post Deleted!' });
         })
 });
