@@ -32,30 +32,30 @@ export class PostCreateComponent implements OnInit {
             image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
         });
 
-      this.route.paramMap.subscribe((paramMap: ParamMap) => {
-          if (paramMap.has('postId')) {
-              this.mode = 'edit';
-              this.postId = paramMap.get('postId');
-              this.isLoading = true;
-              this.postsService.getPost(this.postId).subscribe(postData => {
-                  this.isLoading = false;
-                  this.post = {
-                      id: postData._id,
-                      title: postData.title,
-                      content: postData.content,
-                      imagePath: postData.imagePath
-                  };
-                  this.form.setValue({
-                      title: this.post.title,
-                      content: this.post.content,
-                      image: this.post.imagePath
-                  });
-              });
-          } else {
-              this.mode = 'create';
-              this.postId = null;
-          }
-      });
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+            if (paramMap.has('postId')) {
+                this.mode = 'edit';
+                this.postId = paramMap.get('postId');
+                this.isLoading = true;
+                this.postsService.getPost(this.postId).subscribe(postData => {
+                    this.isLoading = false;
+                    this.post = {
+                        id: postData._id,
+                        title: postData.title,
+                        content: postData.content,
+                        imagePath: postData.imagePath
+                    };
+                    this.form.setValue({
+                        title: this.post.title,
+                        content: this.post.content,
+                        image: this.post.imagePath
+                    });
+                });
+            } else {
+                this.mode = 'create';
+                this.postId = null;
+            }
+        });
     }
 
     onImagePicked(event: Event) {
