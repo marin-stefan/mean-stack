@@ -64,5 +64,4 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.postSub.unsubscribe();
         this.authStatusSub.unsubscribe();
     }
-
 }

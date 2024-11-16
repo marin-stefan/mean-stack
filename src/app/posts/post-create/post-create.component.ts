@@ -73,6 +73,7 @@ export class PostCreateComponent implements OnInit {
         if (this.form.invalid) {
             return;
         };
+
         this.isLoading = true;
 
         if (this.mode === 'create') {
