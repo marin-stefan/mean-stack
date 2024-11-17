@@ -17,11 +17,11 @@ export class AuthGuard implements CanActivate {
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         // return true is route is accesable and false if route is blocked
         const isAuth = this.authService.getIsAuth();
+
         if (!isAuth) {
             this.router.navigate(['/login']);
         }
 
         return isAuth;
     }
-
 }

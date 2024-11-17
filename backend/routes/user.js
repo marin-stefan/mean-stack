@@ -53,6 +53,7 @@ router.post('/login', (req, res, next) => {
                 'secret_santa', 
                 { expiresIn: '1h' }
             );
+
             res.status(200).json({
                 token: token,
                 expiresIn: 3600
